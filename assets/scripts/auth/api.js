@@ -1,6 +1,7 @@
 'use strict'
 const config = require('../config')
 const store = require('../store')
+store.boardValue = ''
 
 const signUp = function (data) {
   return $.ajax({
@@ -24,6 +25,7 @@ const signIn = function (data) {
 }
 const changePassword = function (data) {
   console.log(store.userToken)
+  console.log(JSON.stringify(data))
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -36,17 +38,290 @@ const changePassword = function (data) {
 }
 const signOut = function () {
   return $.ajax({
-    url: config.apiOrigins.development + '/sign-out/' + store.user.id,
+    url: config.apiOrigins.development + '/sign-out/' + store.id,
     method: 'DELETE',
     headers: {
-      'Authorization': 'Token token=' + store.user.token
+      'Authorization': 'Token token=' + store.userToken
     }
   })
+}
+const gamesPlayed = function () {
+  return $.ajax({
+    url: config.apiOrigins.development + '/games?overfalse',
+    method: 'GET',
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    }
+  })
+}
+const createGame = function () {
+  // store.gameCreator = true
+  store.player = 'X'
+  console.log(store.player)
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games',
+    method: 'POST'
+  })
+  .then(console.log('created! Game ID: '))
+}
+const joinGame = function (data) {
+  if (store.player === 'O') {
+    store.player = 'X'
+  } else {
+    store.player = 'O'
+  }
+  console.log(store.player)
+  const gameId = JSON.stringify(data)
+  store.currentGameId = gameId.replace(/\D/g, '')
+  // console.log($(data).stringify())
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    method: 'PATCH'
+  })
+  .then(console.log('joined game: ' + store.currentGameId))
+}
+const box1Click = function () {
+  if (store.player_x === 'X') {
+    store.player = 'X'
+  } else if (store.player_o === 'O') {
+    store.player = 'O'
+  }
+  store.boardValue = store.player
+  console.log(store.player + ' ' + store.boardValue)
+  console.log(store.currentGameId)
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    method: 'PATCH',
+    data: {
+      'game': {
+        'cell': {
+          'index': 0,
+          'value': '' + store.player + ''
+        },
+        'over': false
+      }
+    }
+  })
+  .then(console.log('turn complete!'))
+}
+
+const box2Click = function () {
+  if (store.player_x === 'X') {
+    store.player = 'X'
+  } else if (store.player_o === 'O') {
+    store.player = 'O'
+  }
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    method: 'PATCH',
+    data: {
+      'game': {
+        'cell': {
+          'index': 1,
+          'value': '' + store.player + ''
+        },
+        'over': false
+      }
+    }
+  })
+  .then(console.log('turn complete!'))
+}
+const box3Click = function () {
+  if (store.player_x === 'X') {
+    store.player = 'X'
+  } else if (store.player_o === 'O') {
+    store.player = 'O'
+  }
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    method: 'PATCH',
+    data: {
+      'game': {
+        'cell': {
+          'index': 2,
+          'value': '' + store.player + ''
+        },
+        'over': false
+      }
+    }
+  })
+  .then(console.log('turn complete!'))
+}
+const box4Click = function () {
+  if (store.player_x === 'X') {
+    store.player = 'X'
+  } else if (store.player_o === 'O') {
+    store.player = 'O'
+  }
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    method: 'PATCH',
+    data: {
+      'game': {
+        'cell': {
+          'index': 3,
+          'value': '' + store.player + ''
+        },
+        'over': false
+      }
+    }
+  })
+  .then(console.log('turn complete!'))
+}
+const box5Click = function () {
+  if (store.player_x === 'X') {
+    store.player = 'X'
+  } else if (store.player_o === 'O') {
+    store.player = 'O'
+  }
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    method: 'PATCH',
+    data: {
+      'game': {
+        'cell': {
+          'index': 4,
+          'value': '' + store.player + ''
+        },
+        'over': false
+      }
+    }
+  })
+  .then(console.log('turn complete!'))
+}
+const box6Click = function () {
+  if (store.player_x === 'X') {
+    store.player = 'X'
+  } else if (store.player_o === 'O') {
+    store.player = 'O'
+  }
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    method: 'PATCH',
+    data: {
+      'game': {
+        'cell': {
+          'index': 5,
+          'value': '' + store.player + ''
+        },
+        'over': false
+      }
+    }
+  })
+  .then(console.log('turn complete!'))
+}
+const box7Click = function () {
+  if (store.player_x === 'X') {
+    store.player = 'X'
+  } else if (store.player_o === 'O') {
+    store.player = 'O'
+  }
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    method: 'PATCH',
+    data: {
+      'game': {
+        'cell': {
+          'index': 6,
+          'value': '' + store.player + ''
+        },
+        'over': false
+      }
+    }
+  })
+  .then(console.log('turn complete!'))
+}
+const box8Click = function () {
+  if (store.player_x === 'X') {
+    store.player = 'X'
+  } else if (store.player_o === 'O') {
+    store.player = 'O'
+  }
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    method: 'PATCH',
+    data: {
+      'game': {
+        'cell': {
+          'index': 7,
+          'value': '' + store.player + ''
+        },
+        'over': false
+      }
+    }
+  })
+  .then(console.log('turn complete!'))
+}
+const box9Click = function () {
+  if (store.player_x === 'X') {
+    store.player = 'X'
+  } else if (store.player_o === 'O') {
+    store.player = 'O'
+  }
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    method: 'PATCH',
+    data: {
+      'game': {
+        'cell': {
+          'index': 8,
+          'value': '' + store.player + ''
+        },
+        'over': false
+      }
+    }
+  })
+  .then(console.log('turn complete!'))
 }
 
 module.exports = {
   signUp,
   signIn,
   changePassword,
-  signOut
+  signOut,
+  gamesPlayed,
+  createGame,
+  joinGame,
+  box1Click,
+  box2Click,
+  box3Click,
+  box4Click,
+  box5Click,
+  box6Click,
+  box7Click,
+  box8Click,
+  box9Click
 }

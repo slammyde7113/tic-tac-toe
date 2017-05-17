@@ -1,5 +1,8 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+h1 {
+  text-align: center;
+}
 
 .container {
   background: gray;
@@ -10,4 +13,14 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
   height: 200px;
   text-align: center;
   font-size: 118px;
+}
+
+#games-over-container {
+  display: block;
+  width: 250px;
+}
+
+#create-game {
+  display: block;
+  width: 250px;
 }
