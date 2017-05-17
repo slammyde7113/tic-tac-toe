@@ -36,17 +36,38 @@ const changePassword = function (data) {
 }
 const signOut = function () {
   return $.ajax({
-    url: config.apiOrigins.development + '/sign-out/' + store.user.id,
+    url: config.apiOrigins.development + '/sign-out/' + store.id,
     method: 'DELETE',
     headers: {
-      'Authorization': 'Token token=' + store.user.token
+      'Authorization': 'Token token=' + store.userToken
     }
   })
+}
+const gamesPlayed = function () {
+  return $.ajax({
+    url: config.apiOrigins.development + '/games?overfalse',
+    method: 'GET',
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    }
+  })
+}
+const createGame = function () {
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.development + '/games',
+    method: 'POST'
+  })
+  .then(console.log('created!'))
 }
 
 module.exports = {
   signUp,
   signIn,
   changePassword,
-  signOut
+  signOut,
+  gamesPlayed,
+  createGame
 }

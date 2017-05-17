@@ -44,8 +44,26 @@ const onSignOut = function (event) {
   console.log('signed out')
 
   api.signOut()
-    .then(ui.signOutSucess)
+    .then(ui.signOutSuccess)
     .catch(ui.signOutFailure)
+}
+const onGamesPlayed = function (event) {
+  event.preventDefault()
+  console.log('checking...')
+
+  api.gamesPlayed()
+    .then(ui.gamesPlayedSuccess)
+    .catch(ui.gamesPlayedFailure)
+}
+const onCreateGame = function (event) {
+  // prefer event.target over this
+  event.preventDefault()
+  console.log('creating game...')
+  // initiates an HTTP request that was defined in the api module as singUp
+  api.createGame() // passing the credentials to the ajax call
+    .then(ui.createGameSuccess) // using the Promise tot ensure order execution
+    // .then() afterwards takes the results of the previous .then()
+    .catch(ui.createGameFailure)
 }
 
 const addHandlers = () => {
@@ -53,6 +71,8 @@ const addHandlers = () => {
   $('#sign-in').on('submit', onSignIn)
   $('#change-pass').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
+  $('#games-over').on('submit', onGamesPlayed)
+  $('#create-game').on('submit', onCreateGame)
 }
 
 module.exports = {

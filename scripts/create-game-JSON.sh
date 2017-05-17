@@ -1,7 +1,7 @@
 curl "http://tic-tac-toe.wdibos.com/games" \
   --include \
   --request POST \
-  --header "Authorization: Token token=BAhJIiU0YmZmM2I4YzQxMjYwNjJmYjhlYTFhZDE3NTA1OTk0OAY6BkVG--42d5fbf0e6e9117aebe614482cc6aea4a6593fa0"
+  --header "Authorization: Token token=BAhJIiU3YTk2ZWVhMDc5NGY0MGRmZWFmOTM0MjVlNmIyZjE5NAY6BkVG--a106fad1e5add3860e017552f139f78f1a2fa3f7"
   --data '{
     "games": [
       "id": "1",
