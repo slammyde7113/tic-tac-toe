@@ -736,6 +736,13 @@ const box9ClickSuccess = function () {
   }
 }
 const boardCleared = function () {
+  api.signOut()
+  $('.container').hide()
+  $('#sign-in').show()
+  $('#games-over').hide()
+  $('#create-game').hide()
+  $('#sign-out').hide()
+  $('#change-pass').hide()
   $('#box1').text('')
   $('#box2').text('')
   $('#box3').text('')
@@ -745,6 +752,7 @@ const boardCleared = function () {
   $('#box7').text('')
   $('#box8').text('')
   $('#box9').text('')
+  $('#prompt').text('Sign In To Play Again')
 }
 
 module.exports = {
