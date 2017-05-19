@@ -4,7 +4,14 @@ h1 {
   text-align: center;
 }
 
+#prompt {
+  font-size: 36px;
+  background-color: blue;
+  color: white;
+}
+
 .container {
+  display: none;
   background: gray;
 }
 
@@ -19,8 +26,22 @@ h1 {
   display: block;
   width: 250px;
 }
-
+#join-game {
+  display: none;
+}
 #create-game {
-  display: block;
+  display: none;
   width: 250px;
+}
+#change-pass {
+  display: none;
+}
+#games-over {
+  display: none;
+}
+#create-game {
+  display: none;
+}
+#sign-out {
+  display: none;
 }

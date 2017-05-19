@@ -160,6 +160,10 @@ const onBox9 = function (event) {
     // .then() afterwards takes the results of the previous .then()
     .catch(ui.box9ClickFailure)
 }
+const clearBoard = function (event) {
+  event.preventDefault()
+  ui.boardCleared()
+}
 
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
@@ -178,6 +182,7 @@ const addHandlers = () => {
   $('#box7').on('click', onBox7)
   $('#box8').on('click', onBox8)
   $('#box9').on('click', onBox9)
+  $('#clear-board').on('submit', clearBoard)
 }
 
 module.exports = {

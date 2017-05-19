@@ -1,6 +1,7 @@
 'use strict'
 const config = require('../config')
 const store = require('../store')
+store.counter = 0
 store.boardValue = ''
 
 const signUp = function (data) {
@@ -65,15 +66,9 @@ const createGame = function () {
     url: config.apiOrigins.development + '/games',
     method: 'POST'
   })
-  .then(console.log('created! Game ID: '))
+  .then()
 }
 const joinGame = function (data) {
-  if (store.player === 'O') {
-    store.player = 'X'
-  } else {
-    store.player = 'O'
-  }
-  console.log(store.player)
   const gameId = JSON.stringify(data)
   store.currentGameId = gameId.replace(/\D/g, '')
   // console.log($(data).stringify())
@@ -86,14 +81,17 @@ const joinGame = function (data) {
   })
   .then(console.log('joined game: ' + store.currentGameId))
 }
+
 const box1Click = function () {
-  if (store.player_x === 'X') {
+  if (store.counter % 2) {
     store.player = 'X'
-  } else if (store.player_o === 'O') {
+    store.counter++
+  } else {
     store.player = 'O'
+    store.counter++
   }
   store.boardValue = store.player
-  console.log(store.player + ' ' + store.boardValue)
+  console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   console.log(store.currentGameId)
   return $.ajax({
     headers: {
@@ -115,11 +113,16 @@ const box1Click = function () {
 }
 
 const box2Click = function () {
-  if (store.player_x === 'X') {
+  console.log('pressed')
+  if (store.counter % 2) {
     store.player = 'X'
-  } else if (store.player_o === 'O') {
+    store.counter++
+  } else {
     store.player = 'O'
+    store.counter++
   }
+  store.boardValue = store.player
+  console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -139,11 +142,15 @@ const box2Click = function () {
   .then(console.log('turn complete!'))
 }
 const box3Click = function () {
-  if (store.player_x === 'X') {
+  if (store.counter % 2) {
     store.player = 'X'
-  } else if (store.player_o === 'O') {
+    store.counter++
+  } else {
     store.player = 'O'
+    store.counter++
   }
+  store.boardValue = store.player
+  console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -163,11 +170,15 @@ const box3Click = function () {
   .then(console.log('turn complete!'))
 }
 const box4Click = function () {
-  if (store.player_x === 'X') {
+  if (store.counter % 2) {
     store.player = 'X'
-  } else if (store.player_o === 'O') {
+    store.counter++
+  } else {
     store.player = 'O'
+    store.counter++
   }
+  store.boardValue = store.player
+  console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -187,11 +198,15 @@ const box4Click = function () {
   .then(console.log('turn complete!'))
 }
 const box5Click = function () {
-  if (store.player_x === 'X') {
+  if (store.counter % 2) {
     store.player = 'X'
-  } else if (store.player_o === 'O') {
+    store.counter++
+  } else {
     store.player = 'O'
+    store.counter++
   }
+  store.boardValue = store.player
+  console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -211,11 +226,15 @@ const box5Click = function () {
   .then(console.log('turn complete!'))
 }
 const box6Click = function () {
-  if (store.player_x === 'X') {
+  if (store.counter % 2) {
     store.player = 'X'
-  } else if (store.player_o === 'O') {
+    store.counter++
+  } else {
     store.player = 'O'
+    store.counter++
   }
+  store.boardValue = store.player
+  console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -235,11 +254,15 @@ const box6Click = function () {
   .then(console.log('turn complete!'))
 }
 const box7Click = function () {
-  if (store.player_x === 'X') {
+  if (store.counter % 2) {
     store.player = 'X'
-  } else if (store.player_o === 'O') {
+    store.counter++
+  } else {
     store.player = 'O'
+    store.counter++
   }
+  store.boardValue = store.player
+  console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -259,11 +282,15 @@ const box7Click = function () {
   .then(console.log('turn complete!'))
 }
 const box8Click = function () {
-  if (store.player_x === 'X') {
+  if (store.counter % 2) {
     store.player = 'X'
-  } else if (store.player_o === 'O') {
+    store.counter++
+  } else {
     store.player = 'O'
+    store.counter++
   }
+  store.boardValue = store.player
+  console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -283,11 +310,15 @@ const box8Click = function () {
   .then(console.log('turn complete!'))
 }
 const box9Click = function () {
-  if (store.player_x === 'X') {
+  if (store.counter % 2) {
     store.player = 'X'
-  } else if (store.player_o === 'O') {
+    store.counter++
+  } else {
     store.player = 'O'
+    store.counter++
   }
+  store.boardValue = store.player
+  console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
       'Authorization': 'Token token=' + store.userToken
