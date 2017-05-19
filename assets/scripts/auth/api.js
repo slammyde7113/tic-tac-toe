@@ -6,14 +6,14 @@ store.boardValue = ''
 
 const signUp = function (data) {
   return $.ajax({
-    url: config.apiOrigins.development + '/sign-up/',
+    url: config.apiOrigins.production + '/sign-up/',
     method: 'POST',
     data
   })
 }
 const signIn = function (data) {
   return $.ajax({
-    url: config.apiOrigins.development + '/sign-in/',
+    url: config.apiOrigins.production + '/sign-in/',
     method: 'POST',
     data
   })
@@ -31,7 +31,7 @@ const changePassword = function (data) {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/change-password/' + store.id,
+    url: config.apiOrigins.production + '/change-password/' + store.id,
     method: 'PATCH',
     data
   })
@@ -39,7 +39,7 @@ const changePassword = function (data) {
 }
 const signOut = function () {
   return $.ajax({
-    url: config.apiOrigins.development + '/sign-out/' + store.id,
+    url: config.apiOrigins.production + '/sign-out/' + store.id,
     method: 'DELETE',
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -48,7 +48,7 @@ const signOut = function () {
 }
 const gamesPlayed = function () {
   return $.ajax({
-    url: config.apiOrigins.development + '/games?overfalse',
+    url: config.apiOrigins.production + '/games?overfalse',
     method: 'GET',
     headers: {
       'Authorization': 'Token token=' + store.userToken
@@ -63,7 +63,7 @@ const createGame = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games',
+    url: config.apiOrigins.production + '/games',
     method: 'POST'
   })
   .then()
@@ -76,7 +76,7 @@ const joinGame = function (data) {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    url: config.apiOrigins.production + '/games/' + store.currentGameId,
     method: 'PATCH'
   })
   .then(console.log('joined game: ' + store.currentGameId))
@@ -97,7 +97,7 @@ const box1Click = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    url: config.apiOrigins.production + '/games/' + store.currentGameId,
     method: 'PATCH',
     data: {
       'game': {
@@ -127,7 +127,7 @@ const box2Click = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    url: config.apiOrigins.production + '/games/' + store.currentGameId,
     method: 'PATCH',
     data: {
       'game': {
@@ -155,7 +155,7 @@ const box3Click = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    url: config.apiOrigins.production + '/games/' + store.currentGameId,
     method: 'PATCH',
     data: {
       'game': {
@@ -183,7 +183,7 @@ const box4Click = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    url: config.apiOrigins.production + '/games/' + store.currentGameId,
     method: 'PATCH',
     data: {
       'game': {
@@ -211,7 +211,7 @@ const box5Click = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    url: config.apiOrigins.production + '/games/' + store.currentGameId,
     method: 'PATCH',
     data: {
       'game': {
@@ -239,7 +239,7 @@ const box6Click = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    url: config.apiOrigins.production + '/games/' + store.currentGameId,
     method: 'PATCH',
     data: {
       'game': {
@@ -267,7 +267,7 @@ const box7Click = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    url: config.apiOrigins.production + '/games/' + store.currentGameId,
     method: 'PATCH',
     data: {
       'game': {
@@ -295,7 +295,7 @@ const box8Click = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    url: config.apiOrigins.production + '/games/' + store.currentGameId,
     method: 'PATCH',
     data: {
       'game': {
@@ -323,7 +323,7 @@ const box9Click = function () {
     headers: {
       'Authorization': 'Token token=' + store.userToken
     },
-    url: config.apiOrigins.development + '/games/' + store.currentGameId,
+    url: config.apiOrigins.production + '/games/' + store.currentGameId,
     method: 'PATCH',
     data: {
       'game': {
