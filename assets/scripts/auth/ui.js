@@ -289,7 +289,11 @@ const signOutFailure = (error) => {
 }
 const gamesPlayedSuccess = (data) => {
   console.log(data.games)
-  $('#prompt').text(data.games)
+  let string = 'Game IDs: '
+  for (let i = 0; i < data.games.length; i++) {
+    string += data.games[i].id + ', '
+  }
+  $('#prompt').text(string)
 }
 
 const gamesPlayedFailure = (error) => {
