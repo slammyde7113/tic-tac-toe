@@ -58,6 +58,7 @@ const gamesPlayed = function () {
 const createGame = function () {
   // store.gameCreator = true
   store.player = 'X'
+  store.play = false
   console.log(store.player)
   return $.ajax({
     headers: {
@@ -84,13 +85,19 @@ const joinGame = function (data) {
 
 const box1Click = function () {
   if (store.counter % 2) {
-    store.player = 'X'
-    store.counter++
-  } else {
     store.player = 'O'
     store.counter++
+  } else {
+    store.player = 'X'
+    store.counter++
   }
-  store.boardValue = store.player
+  console.log(store.play)
+  if (!store.play) {
+    console.log('loop executed')
+    store.boardValue = store.player
+  } else {
+    store.boardValue = ''
+  }
   console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   console.log(store.currentGameId)
   return $.ajax({
@@ -115,13 +122,18 @@ const box1Click = function () {
 const box2Click = function () {
   console.log('pressed')
   if (store.counter % 2) {
-    store.player = 'X'
-    store.counter++
-  } else {
     store.player = 'O'
     store.counter++
+  } else {
+    store.player = 'X'
+    store.counter++
   }
-  store.boardValue = store.player
+  if (!store.play) {
+    console.log('loop executed')
+    store.boardValue = store.player
+  } else {
+    store.boardValue = ''
+  }
   console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
@@ -143,13 +155,18 @@ const box2Click = function () {
 }
 const box3Click = function () {
   if (store.counter % 2) {
-    store.player = 'X'
-    store.counter++
-  } else {
     store.player = 'O'
     store.counter++
+  } else {
+    store.player = 'X'
+    store.counter++
   }
-  store.boardValue = store.player
+  if (!store.play) {
+    console.log('loop executed')
+    store.boardValue = store.player
+  } else {
+    store.boardValue = ''
+  }
   console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
@@ -171,13 +188,18 @@ const box3Click = function () {
 }
 const box4Click = function () {
   if (store.counter % 2) {
-    store.player = 'X'
-    store.counter++
-  } else {
     store.player = 'O'
     store.counter++
+  } else {
+    store.player = 'X'
+    store.counter++
   }
-  store.boardValue = store.player
+  if (!store.play) {
+    console.log('loop executed')
+    store.boardValue = store.player
+  } else {
+    store.boardValue = ''
+  }
   console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
@@ -199,13 +221,18 @@ const box4Click = function () {
 }
 const box5Click = function () {
   if (store.counter % 2) {
-    store.player = 'X'
-    store.counter++
-  } else {
     store.player = 'O'
     store.counter++
+  } else {
+    store.player = 'X'
+    store.counter++
   }
-  store.boardValue = store.player
+  if (!store.play) {
+    console.log('loop executed')
+    store.boardValue = store.player
+  } else {
+    store.boardValue = ''
+  }
   console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
@@ -227,13 +254,18 @@ const box5Click = function () {
 }
 const box6Click = function () {
   if (store.counter % 2) {
-    store.player = 'X'
-    store.counter++
-  } else {
     store.player = 'O'
     store.counter++
+  } else {
+    store.player = 'X'
+    store.counter++
   }
-  store.boardValue = store.player
+  if (!store.play) {
+    console.log('loop executed')
+    store.boardValue = store.player
+  } else {
+    store.boardValue = ''
+  }
   console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
@@ -255,13 +287,18 @@ const box6Click = function () {
 }
 const box7Click = function () {
   if (store.counter % 2) {
-    store.player = 'X'
-    store.counter++
-  } else {
     store.player = 'O'
     store.counter++
+  } else {
+    store.player = 'X'
+    store.counter++
   }
-  store.boardValue = store.player
+  if (!store.play) {
+    console.log('loop executed')
+    store.boardValue = store.player
+  } else {
+    store.boardValue = ''
+  }
   console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
@@ -283,13 +320,18 @@ const box7Click = function () {
 }
 const box8Click = function () {
   if (store.counter % 2) {
-    store.player = 'X'
-    store.counter++
-  } else {
     store.player = 'O'
     store.counter++
+  } else {
+    store.player = 'X'
+    store.counter++
   }
-  store.boardValue = store.player
+  if (!store.play) {
+    console.log('loop executed')
+    store.boardValue = store.player
+  } else {
+    store.boardValue = ''
+  }
   console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {
@@ -311,13 +353,18 @@ const box8Click = function () {
 }
 const box9Click = function () {
   if (store.counter % 2) {
-    store.player = 'X'
-    store.counter++
-  } else {
     store.player = 'O'
     store.counter++
+  } else {
+    store.player = 'X'
+    store.counter++
   }
-  store.boardValue = store.player
+  if (!store.play) {
+    console.log('loop executed')
+    store.boardValue = store.player
+  } else {
+    store.boardValue = ''
+  }
   console.log(store.player + ' ' + store.boardValue + ' ' + store.counter)
   return $.ajax({
     headers: {

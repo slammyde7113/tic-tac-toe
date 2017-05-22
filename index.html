@@ -33,14 +33,14 @@
       </form>
       <form id="sign-in">
         <fieldset>
-          <legend>Sign in!</legend>
-          <label>Email
-            <input type="text" name="[credentials][email]" value="">
+          <legend class="sign-in-field">Sign in!</legend>
+          <label class="sign-in-field">Email
+            <input class="sign-in-field" type="text" name="[credentials][email]" value="">
           </label>
-          <label>Password
-            <input type="password" name="[credentials][password]" value="">
+          <label class="sign-in-field">Password
+            <input class="sign-in-field" type="password" name="[credentials][password]" value="">
           </label>
-          <input type="submit" name="submit" value="Sign in!">
+          <input class="sign-in-button" type="submit" name="submit" value="Sign in!">
         </fieldset>
       </form>
       <form id="change-pass">
@@ -55,9 +55,9 @@
           <input type="submit" name="submit" value="Change Password">
         </fieldset>
       </form>
-      <form id="sign-out">
+      <form id="sign-out" class="sign-in-button">
         <fieldset>
-          <legend>Sign Out!</legend>
+          <legend class="sign-in-field">Sign Out!</legend>
           <input type="submit" name="submit" value="Sign out!">
         </fieldset>
       </form>
@@ -92,9 +92,7 @@
       <div class="container">
         <form id="clear-board">
         <div class="row" id="top-row">
-          <label>Clear
-            <input type="submit" name="[game][id]" value="">
-          </label>
+          <label> X goes first</label>
         </div>
       </form>
         <div class="row">

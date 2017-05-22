@@ -1,4 +1,5 @@
 'use strict'
+const events = require('./events')
 const store = require('../store')
 const api = require('./api')
 store.play = false
@@ -11,6 +12,8 @@ const isXOrO = function (array, letter) {
   }
   return results
 }
+// make a get api for values on api
+// pos0-9 can be an empty string === false
 const winTest = function (array) {
   let pos0 = false
   let pos1 = false
@@ -50,27 +53,99 @@ const winTest = function (array) {
       pos8 = true
     }
     if (pos0 && pos1 && pos2) {
+      pos0 = false
+      pos1 = false
+      pos2 = false
+      pos3 = false
+      pos4 = false
+      pos5 = false
+      pos6 = false
+      pos7 = false
+      pos8 = false
       return true
     }
     if (pos3 && pos4 && pos5) {
+      pos0 = false
+      pos1 = false
+      pos2 = false
+      pos3 = false
+      pos4 = false
+      pos5 = false
+      pos6 = false
+      pos7 = false
+      pos8 = false
       return true
     }
     if (pos6 && pos7 && pos8) {
+      pos0 = false
+      pos1 = false
+      pos2 = false
+      pos3 = false
+      pos4 = false
+      pos5 = false
+      pos6 = false
+      pos7 = false
+      pos8 = false
       return true
     }
     if (pos0 && pos3 && pos6) {
+      pos0 = false
+      pos1 = false
+      pos2 = false
+      pos3 = false
+      pos4 = false
+      pos5 = false
+      pos6 = false
+      pos7 = false
+      pos8 = false
       return true
     }
     if (pos1 && pos4 && pos7) {
+      pos0 = false
+      pos1 = false
+      pos2 = false
+      pos3 = false
+      pos4 = false
+      pos5 = false
+      pos6 = false
+      pos7 = false
+      pos8 = false
       return true
     }
     if (pos2 && pos5 && pos8) {
+      pos0 = false
+      pos1 = false
+      pos2 = false
+      pos3 = false
+      pos4 = false
+      pos5 = false
+      pos6 = false
+      pos7 = false
+      pos8 = false
       return true
     }
     if (pos0 && pos4 && pos8) {
+      pos0 = false
+      pos1 = false
+      pos2 = false
+      pos3 = false
+      pos4 = false
+      pos5 = false
+      pos6 = false
+      pos7 = false
+      pos8 = false
       return true
     }
     if (pos2 && pos4 && pos6) {
+      pos0 = false
+      pos1 = false
+      pos2 = false
+      pos3 = false
+      pos4 = false
+      pos5 = false
+      pos6 = false
+      pos7 = false
+      pos8 = false
       return true
     }
   }
@@ -89,7 +164,7 @@ const isBoardFull = function (array) {
     return false
   }
 }
-const boardArray = ['index1', 'index2', 'index3', 'index4', 'index5', 'index6', 'index7', 'index8', 'index9']
+let boardArray = ['', '', '', '', '', '', '', '', '']
 const testWin1 = function (array) {
   if (array[1] === array[2] === array[3]) {
     if (store.counter % 2) {
@@ -280,6 +355,9 @@ const signOutSuccess = (data) => {
   $('#sign-in').show()
   $('#sign-out').hide()
   $('#change-pass').hide()
+  $('.sign-in-field').show()
+  $('.sign-in-button').show()
+  $('.sign-in-button').val('Sign in')
   $('#prompt').text('Signout Successful')
 }
 
@@ -324,32 +402,23 @@ const joinGameFailure = (error) => {
 }
 const box1ClickSuccess = function () {
   if (store.counter % 2) {
-    $('#prompt').text("Player X's Turn")
-  } else {
     $('#prompt').text("Player O's Turn")
+  } else {
+    $('#prompt').text("Player X's Turn")
   }
   if (store.play) {
     $('.container').hide()
     $('#create-game').show()
     if ((store.counter - 1) % 2) {
-      $('#prompt').text('Winner is 0! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
-    } else {
       $('#prompt').text('Winner is X! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
+      boardCleared()
+    } else {
+      $('#prompt').text('Winner is O! Sign In To Play Again!')
+      boardCleared()
     }
   }
-  if (boardArray[0] === 'index1') {
+  console.log(boardArray)
+  if (boardArray[0] === '') {
     boardArray[0] = store.boardValue
     $('#box1').text(store.boardValue)
   } else {
@@ -370,32 +439,22 @@ const box1ClickSuccess = function () {
 }
 const box2ClickSuccess = function () {
   if (store.counter % 2) {
-    $('#prompt').text("Player X's Turn")
-  } else {
     $('#prompt').text("Player O's Turn")
+  } else {
+    $('#prompt').text("Player X's Turn")
   }
   if (store.play) {
     $('.container').hide()
     $('#create-game').show()
     if ((store.counter - 1) % 2) {
-      $('#prompt').text('Winner is 0! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
-    } else {
       $('#prompt').text('Winner is X! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
+      boardCleared()
+    } else {
+      $('#prompt').text('Winner is O! Sign In To Play Again!')
+      boardCleared()
     }
   }
-  if (boardArray[1] === 'index2') {
+  if (boardArray[1] === '') {
     boardArray[1] = store.boardValue
     $('#box2').text(store.boardValue)
   } else {
@@ -416,32 +475,22 @@ const box2ClickSuccess = function () {
 }
 const box3ClickSuccess = function () {
   if (store.counter % 2) {
-    $('#prompt').text("Player X's Turn")
-  } else {
     $('#prompt').text("Player O's Turn")
+  } else {
+    $('#prompt').text("Player X's Turn")
   }
   if (store.play) {
     $('.container').hide()
     $('#create-game').show()
     if ((store.counter - 1) % 2) {
-      $('#prompt').text('Winner is 0! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
-    } else {
       $('#prompt').text('Winner is X! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
+      boardCleared()
+    } else {
+      $('#prompt').text('Winner is O! Sign In To Play Again!')
+      boardCleared()
     }
   }
-  if (boardArray[2] === 'index3') {
+  if (boardArray[2] === '') {
     boardArray[2] = store.boardValue
     $('#box3').text(store.boardValue)
   } else {
@@ -462,32 +511,22 @@ const box3ClickSuccess = function () {
 }
 const box4ClickSuccess = function () {
   if (store.counter % 2) {
-    $('#prompt').text("Player X's Turn")
-  } else {
     $('#prompt').text("Player O's Turn")
+  } else {
+    $('#prompt').text("Player X's Turn")
   }
   if (store.play) {
     $('.container').hide()
     $('#create-game').show()
     if ((store.counter - 1) % 2) {
-      $('#prompt').text('Winner is 0! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
-    } else {
       $('#prompt').text('Winner is X! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
+      boardCleared()
+    } else {
+      $('#prompt').text('Winner is O! Sign In To Play Again!')
+      boardCleared()
     }
   }
-  if (boardArray[3] === 'index4') {
+  if (boardArray[3] === '') {
     boardArray[3] = store.boardValue
     $('#box4').text(store.boardValue)
   } else {
@@ -508,32 +547,22 @@ const box4ClickSuccess = function () {
 }
 const box5ClickSuccess = function () {
   if (store.counter % 2) {
-    $('#prompt').text("Player X's Turn")
-  } else {
     $('#prompt').text("Player O's Turn")
+  } else {
+    $('#prompt').text("Player X's Turn")
   }
   if (store.play) {
     $('.container').hide()
     $('#create-game').show()
     if ((store.counter - 1) % 2) {
-      $('#prompt').text('Winner is 0! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
-    } else {
       $('#prompt').text('Winner is X! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
+      boardCleared()
+    } else {
+      $('#prompt').text('Winner is O! Sign In To Play Again!')
+      boardCleared()
     }
   }
-  if (boardArray[4] === 'index5') {
+  if (boardArray[4] === '') {
     boardArray[4] = store.boardValue
     $('#box5').text(store.boardValue)
   } else {
@@ -554,32 +583,22 @@ const box5ClickSuccess = function () {
 }
 const box6ClickSuccess = function () {
   if (store.counter % 2) {
-    $('#prompt').text("Player X's Turn")
-  } else {
     $('#prompt').text("Player O's Turn")
+  } else {
+    $('#prompt').text("Player X's Turn")
   }
   if (store.play) {
     $('.container').hide()
     $('#create-game').show()
     if ((store.counter - 1) % 2) {
-      $('#prompt').text('Winner is 0! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
-    } else {
       $('#prompt').text('Winner is X! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
+      boardCleared()
+    } else {
+      $('#prompt').text('Winner is O! Sign In To Play Again!')
+      boardCleared()
     }
   }
-  if (boardArray[5] === 'index6') {
+  if (boardArray[5] === '') {
     boardArray[5] = store.boardValue
     $('#box6').text(store.boardValue)
   } else {
@@ -600,32 +619,22 @@ const box6ClickSuccess = function () {
 }
 const box7ClickSuccess = function () {
   if (store.counter % 2) {
-    $('#prompt').text("Player X's Turn")
-  } else {
     $('#prompt').text("Player O's Turn")
+  } else {
+    $('#prompt').text("Player X's Turn")
   }
   if (store.play) {
     $('.container').hide()
     $('#create-game').show()
     if ((store.counter - 1) % 2) {
-      $('#prompt').text('Winner is 0! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
-    } else {
       $('#prompt').text('Winner is X! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
+      boardCleared()
+    } else {
+      $('#prompt').text('Winner is O! Sign In To Play Again!')
+      boardCleared()
     }
   }
-  if (boardArray[6] === 'index7') {
+  if (boardArray[6] === '') {
     boardArray[6] = store.boardValue
     $('#box7').text(store.boardValue)
   } else {
@@ -646,33 +655,23 @@ const box7ClickSuccess = function () {
 }
 const box8ClickSuccess = function () {
   if (store.counter % 2) {
-    $('#prompt').text("Player X's Turn")
-  } else {
     $('#prompt').text("Player O's Turn")
+  } else {
+    $('#prompt').text("Player X's Turn")
   }
   // testWin9(boardArray)
   if (store.play) {
     $('.container').hide()
     $('#create-game').show()
     if ((store.counter - 1) % 2) {
-      $('#prompt').text('Winner is 0! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
-    } else {
       $('#prompt').text('Winner is X! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
+      boardCleared()
+    } else {
+      $('#prompt').text('Winner is O! Sign In To Play Again!')
+      boardCleared()
     }
   }
-  if (boardArray[7] === 'index8') {
+  if (boardArray[7] === '') {
     boardArray[7] = store.boardValue
     $('#box8').text(store.boardValue)
   } else {
@@ -693,33 +692,22 @@ const box8ClickSuccess = function () {
 }
 const box9ClickSuccess = function () {
   if (store.counter % 2) {
-    $('#prompt').text("Player X's Turn")
-  } else {
     $('#prompt').text("Player O's Turn")
+  } else {
+    $('#prompt').text("Player X's Turn")
   }
   if (store.play) {
     $('.container').hide()
     $('#create-game').show()
     if ((store.counter - 1) % 2) {
-      $('#prompt').text('Winner is 0! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
-      $('#change-pass').hide()
-    } else {
       $('#prompt').text('Winner is X! Sign In To Play Again!')
-      api.signOut()
-      $('#sign-in').show()
-      $('#games-over').hide()
-      $('#create-game').hide()
-      $('#sign-out').hide()
-      $('#change-pass').hide()
+      boardCleared()
+    } else {
+      $('#prompt').text('Winner is O! Sign In To Play Again!')
+      boardCleared()
     }
   }
-  if (boardArray[8] === 'index9') {
+  if (boardArray[8] === '') {
     boardArray[8] = store.boardValue
     $('#box9').text(store.boardValue)
   } else {
@@ -752,7 +740,12 @@ const boardCleared = function () {
   $('#box7').text('')
   $('#box8').text('')
   $('#box9').text('')
-  $('#prompt').text('Sign In To Play Again')
+  boardArray = ['', '', '', '', '', '', '', '', '']
+  store.play = false
+  $('.sign-in-field').hide()
+  $('.sign-in-button').show()
+  $('.sign-in-button').val('Play Again?')
+  // $('#prompt').text('Sign In To Play Again')
 }
 
 module.exports = {
