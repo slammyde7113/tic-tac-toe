@@ -86,10 +86,8 @@ const joinGame = function (data) {
 const box1Click = function () {
   if (store.counter % 2) {
     store.player = 'O'
-    store.counter++
   } else {
     store.player = 'X'
-    store.counter++
   }
   console.log(store.play)
   if (!store.play) {
@@ -112,7 +110,7 @@ const box1Click = function () {
           'index': 0,
           'value': '' + store.player + ''
         },
-        'over': false
+        'over': store.winCondition
       }
     }
   })
@@ -123,10 +121,10 @@ const box2Click = function () {
   console.log('pressed')
   if (store.counter % 2) {
     store.player = 'O'
-    store.counter++
+    store.counter
   } else {
     store.player = 'X'
-    store.counter++
+    store.counter
   }
   if (!store.play) {
     console.log('loop executed')
@@ -147,7 +145,7 @@ const box2Click = function () {
           'index': 1,
           'value': '' + store.player + ''
         },
-        'over': false
+        'over': store.winCondition
       }
     }
   })
@@ -156,10 +154,10 @@ const box2Click = function () {
 const box3Click = function () {
   if (store.counter % 2) {
     store.player = 'O'
-    store.counter++
+    store.counter
   } else {
     store.player = 'X'
-    store.counter++
+    store.counter
   }
   if (!store.play) {
     console.log('loop executed')
@@ -180,7 +178,7 @@ const box3Click = function () {
           'index': 2,
           'value': '' + store.player + ''
         },
-        'over': false
+        'over': store.winCondition
       }
     }
   })
@@ -189,10 +187,10 @@ const box3Click = function () {
 const box4Click = function () {
   if (store.counter % 2) {
     store.player = 'O'
-    store.counter++
+    store.counter
   } else {
     store.player = 'X'
-    store.counter++
+    store.counter
   }
   if (!store.play) {
     console.log('loop executed')
@@ -213,7 +211,7 @@ const box4Click = function () {
           'index': 3,
           'value': '' + store.player + ''
         },
-        'over': false
+        'over': store.winCondition
       }
     }
   })
@@ -222,10 +220,10 @@ const box4Click = function () {
 const box5Click = function () {
   if (store.counter % 2) {
     store.player = 'O'
-    store.counter++
+    store.counter
   } else {
     store.player = 'X'
-    store.counter++
+    store.counter
   }
   if (!store.play) {
     console.log('loop executed')
@@ -246,7 +244,7 @@ const box5Click = function () {
           'index': 4,
           'value': '' + store.player + ''
         },
-        'over': false
+        'over': store.winCondition
       }
     }
   })
@@ -255,10 +253,10 @@ const box5Click = function () {
 const box6Click = function () {
   if (store.counter % 2) {
     store.player = 'O'
-    store.counter++
+    store.counter
   } else {
     store.player = 'X'
-    store.counter++
+    store.counter
   }
   if (!store.play) {
     console.log('loop executed')
@@ -279,7 +277,7 @@ const box6Click = function () {
           'index': 5,
           'value': '' + store.player + ''
         },
-        'over': false
+        'over': store.winCondition
       }
     }
   })
@@ -288,10 +286,10 @@ const box6Click = function () {
 const box7Click = function () {
   if (store.counter % 2) {
     store.player = 'O'
-    store.counter++
+    store.counter
   } else {
     store.player = 'X'
-    store.counter++
+    store.counter
   }
   if (!store.play) {
     console.log('loop executed')
@@ -312,7 +310,7 @@ const box7Click = function () {
           'index': 6,
           'value': '' + store.player + ''
         },
-        'over': false
+        'over': store.winCondition
       }
     }
   })
@@ -321,10 +319,10 @@ const box7Click = function () {
 const box8Click = function () {
   if (store.counter % 2) {
     store.player = 'O'
-    store.counter++
+    store.counter
   } else {
     store.player = 'X'
-    store.counter++
+    store.counter
   }
   if (!store.play) {
     console.log('loop executed')
@@ -345,7 +343,7 @@ const box8Click = function () {
           'index': 7,
           'value': '' + store.player + ''
         },
-        'over': false
+        'over': store.winCondition
       }
     }
   })
@@ -354,10 +352,10 @@ const box8Click = function () {
 const box9Click = function () {
   if (store.counter % 2) {
     store.player = 'O'
-    store.counter++
+    store.counter
   } else {
     store.player = 'X'
-    store.counter++
+    store.counter
   }
   if (!store.play) {
     console.log('loop executed')
@@ -378,7 +376,7 @@ const box9Click = function () {
           'index': 8,
           'value': '' + store.player + ''
         },
-        'over': false
+        'over': store.winCondition
       }
     }
   })
