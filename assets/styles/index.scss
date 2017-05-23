@@ -3,7 +3,9 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 h1 {
   text-align: center;
 }
-
+#draw {
+  text-align: center;
+}
 #prompt {
   font-size: 36px;
   background-color: blue;
