@@ -391,6 +391,9 @@ const gamePlayedSuccess = (data) => {
   if (currGame.over) {
     gameIsOver()
     $('#prompt').text('Game has already been finished')
+  } else {
+    boardArray = currGame.cells
+    console.log(boardArray)
   }
 }
 const gameOverrideFailsafe = (data) => {
