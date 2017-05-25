@@ -371,12 +371,16 @@ const signOutFailure = (error) => {
 const gamesPlayedSuccess = (data) => {
   console.log(data.games)
 
-  let string = ''
+  const gameArray = []
   for (let i = 0; i < data.games.length; i++) {
     console.log(data.games)
-    string += 'Game ID: ' + data.games[i].id + ' is over? ' + data.games[i].over +'______'
+    gameArray.push(`Game ID: ${data.games[i].id} is over? ${data.games[i].over}`)
   }
-  $('#prompt').text(string)
+  $('#prompt').empty()
+  for (let i = 0; i < gameArray.length; i++) {
+    $('#prompt').append('<br>' + gameArray[i] + '</br>')
+  }
+  // $('#prompt').html(gameArray)
 }
 const gamePlayedSuccess = (data) => {
   let currGame

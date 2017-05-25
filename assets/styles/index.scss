@@ -10,6 +10,9 @@ h1 {
   font-size: 36px;
   background-color: blue;
   color: white;
+  height: 200px;
+  overflow: scroll;
+  white-space: pre-line;
 }
 
 .container {
