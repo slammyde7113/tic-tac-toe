@@ -46,7 +46,7 @@ const signOut = function () {
     }
   })
 }
-const gamesPlayed = function () {
+const gamesPlayed = function (data) {
   return $.ajax({
     url: config.apiOrigins.production + '/games?overfalse',
     method: 'GET',
@@ -54,9 +54,20 @@ const gamesPlayed = function () {
       'Authorization': 'Token token=' + store.userToken
     }
   })
+  .then(console.log(data))
+}
+const currentGameOver = function (data) {
+  return $.ajax({
+    url: config.apiOrigins.production + '/games?overfalse',
+    method: 'GET',
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    }
+  })
+  .then(console.log(data))
 }
 const createGame = function () {
-  // store.gameCreator = true
+  store.winCondition = false
   store.player = 'X'
   store.play = false
   console.log(store.player)
@@ -70,6 +81,7 @@ const createGame = function () {
   .then()
 }
 const joinGame = function (data) {
+  console.log(data)
   const gameId = JSON.stringify(data)
   store.currentGameId = gameId.replace(/\D/g, '')
   // console.log($(data).stringify())
@@ -80,7 +92,23 @@ const joinGame = function (data) {
     url: config.apiOrigins.production + '/games/' + store.currentGameId,
     method: 'PATCH'
   })
-  .then(console.log('joined game: ' + store.currentGameId))
+  .then(
+    console.log('joined game: ' + store.currentGameId))
+}
+const updateGame = function () {
+  return $.ajax({
+    headers: {
+      'Authorization': 'Token token=' + store.userToken
+    },
+    url: config.apiOrigins.production + '/games/' + store.currentGameId,
+    method: 'PATCH',
+    data: {
+      'game': {
+        'over': 'true'
+      }
+    }
+  })
+  .then(console.log('Game changed: ' + store.currentGameId))
 }
 
 const box1Click = function () {
@@ -389,8 +417,10 @@ module.exports = {
   changePassword,
   signOut,
   gamesPlayed,
+  currentGameOver,
   createGame,
   joinGame,
+  updateGame,
   box1Click,
   box2Click,
   box3Click,

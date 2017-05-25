@@ -358,6 +358,9 @@ const signOutSuccess = (data) => {
   $('.sign-in-field').show()
   $('.sign-in-button').show()
   $('.sign-in-button').val('Sign in')
+  $('.container').hide()
+  $('#games-over').hide()
+  $('#sign-out').hide()
   $('#prompt').text('Signout Successful')
 }
 
@@ -367,12 +370,31 @@ const signOutFailure = (error) => {
 }
 const gamesPlayedSuccess = (data) => {
   console.log(data.games)
+
   let string = ''
   for (let i = 0; i < data.games.length; i++) {
     console.log(data.games)
     string += 'Game ID: ' + data.games[i].id + ' is over? ' + data.games[i].over +'______'
   }
   $('#prompt').text(string)
+}
+const gamePlayedSuccess = (data) => {
+  let currGame
+  console.log(typeof store.currentGameId)
+  for (let i = 0; i < data.games.length; i++) {
+    //console.log(typeof data.games[1].id)
+    if (data.games[i].id.toString() === store.currentGameId) {
+      console.log(data.games[i].id)
+      currGame = data.games[i]
+    }
+  }
+  if (currGame.over) {
+    gameIsOver()
+    $('#prompt').text('Game has already been finished')
+  }
+}
+const gameOverrideFailsafe = (data) => {
+  console.log(data.games)
 }
 
 const gamesPlayedFailure = (error) => {
@@ -383,7 +405,7 @@ const createGameSuccess = (data) => {
   $('#game-id').text('Game ID: ' + data.game.id)
   $('#join-game').show()
   console.log(data.game.id)
-  $('#prompt').text('Game Created: ID ' + data.game.id)
+  $('#prompt').text('Please Enter Game ID ' + data.game.id + ' Below To Play')
   $('#clear-board').text('X goes first')
 }
 
@@ -396,8 +418,8 @@ const joinGameSuccess = (data) => {
   store.counter = 0
 }
 
-const joinGameFailure = (error) => {
-  console.log(error)
+const joinGameFailure = (data) => {
+  console.log(data)
   $('#create-game').hide()
   $('.container').show()
   $('#join-game').hide()
@@ -430,13 +452,14 @@ const box1ClickSuccess = function () {
     $('#box1').text(store.boardValue)
     store.counter++
   } else {
-    store.counter--
+    $('#box1').off('click', event.onBox1)
   }
   console.log(isXOrO(boardArray, 'X'))
   console.log(winTest(isXOrO(boardArray, 'X')))
   console.log(winTest(isXOrO(boardArray, 'O')))
   // wrap this in a conditional to check is board is full
     if (winTest(isXOrO(boardArray, 'X'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
@@ -444,6 +467,7 @@ const box1ClickSuccess = function () {
       $('#prompt').text('Winner is X! Sign In To Play Again!')
     }
     if (winTest(isXOrO(boardArray, 'O'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
@@ -453,10 +477,12 @@ const box1ClickSuccess = function () {
   } else {
   console.log("board is full")
   if (winTest(isXOrO(boardArray, 'X'))) {
+    api.updateGame()
     store.play = true
     store.winCondition = true
     store.counter = 0
   } else if (winTest(isXOrO(boardArray, 'O'))) {
+    api.updateGame()
     store.play = true
     store.winCondition = true
     store.counter = 0
@@ -494,13 +520,14 @@ const box2ClickSuccess = function () {
       $('#box2').text(store.boardValue)
       store.counter++
     } else {
-      store.counter--
+      $('#box2').off('click', event.onBox2)
     }
     console.log(isXOrO(boardArray, 'X'))
     console.log(winTest(isXOrO(boardArray, 'X')))
     console.log(winTest(isXOrO(boardArray, 'O')))
     // wrap this in a conditional to check is board is full
       if (winTest(isXOrO(boardArray, 'X'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -508,6 +535,7 @@ const box2ClickSuccess = function () {
         $('#prompt').text('Winner is X! Sign In To Play Again!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -517,10 +545,12 @@ const box2ClickSuccess = function () {
     } else {
     console.log("board is full")
     if (winTest(isXOrO(boardArray, 'X'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else if (winTest(isXOrO(boardArray, 'O'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
@@ -558,13 +588,14 @@ const box3ClickSuccess = function () {
       $('#box3').text(store.boardValue)
       store.counter++
     } else {
-      store.counter--
+      $('#box3').off('click', event.onBox3)
     }
     console.log(isXOrO(boardArray, 'X'))
     console.log(winTest(isXOrO(boardArray, 'X')))
     console.log(winTest(isXOrO(boardArray, 'O')))
     // wrap this in a conditional to check is board is full
       if (winTest(isXOrO(boardArray, 'X'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -572,6 +603,7 @@ const box3ClickSuccess = function () {
         $('#prompt').text('Winner is X! Sign In To Play Again!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -581,10 +613,12 @@ const box3ClickSuccess = function () {
     } else {
     console.log("board is full")
     if (winTest(isXOrO(boardArray, 'X'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else if (winTest(isXOrO(boardArray, 'O'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
@@ -622,13 +656,14 @@ const box4ClickSuccess = function () {
       $('#box4').text(store.boardValue)
       store.counter++
     } else {
-      store.counter--
+      $('#box4').off('click', event.onBox4)
     }
     console.log(isXOrO(boardArray, 'X'))
     console.log(winTest(isXOrO(boardArray, 'X')))
     console.log(winTest(isXOrO(boardArray, 'O')))
     // wrap this in a conditional to check is board is full
       if (winTest(isXOrO(boardArray, 'X'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -636,6 +671,7 @@ const box4ClickSuccess = function () {
         $('#prompt').text('Winner is X! Sign In To Play Again!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -645,14 +681,17 @@ const box4ClickSuccess = function () {
     } else {
     console.log("board is full")
     if (winTest(isXOrO(boardArray, 'X'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else if (winTest(isXOrO(boardArray, 'O'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else {
+      api.updateGame()
       store.play = true
       store.counter = 0
       $('#prompt').text('Tie')
@@ -686,13 +725,14 @@ const box5ClickSuccess = function () {
       $('#box5').text(store.boardValue)
       store.counter++
     } else {
-      store.counter--
+      $('#box5').off('click', event.onBox5)
     }
     console.log(isXOrO(boardArray, 'X'))
     console.log(winTest(isXOrO(boardArray, 'X')))
     console.log(winTest(isXOrO(boardArray, 'O')))
     // wrap this in a conditional to check is board is full
       if (winTest(isXOrO(boardArray, 'X'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -700,6 +740,7 @@ const box5ClickSuccess = function () {
         $('#prompt').text('Winner is X! Sign In To Play Again!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -709,14 +750,17 @@ const box5ClickSuccess = function () {
     } else {
     console.log("board is full")
     if (winTest(isXOrO(boardArray, 'X'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else if (winTest(isXOrO(boardArray, 'O'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else {
+      api.updateGame()
       store.play = true
       store.counter = 0
       $('#prompt').text('Tie')
@@ -737,9 +781,11 @@ const box6ClickSuccess = function () {
       $('.container').hide()
       $('#create-game').show()
       if ((store.counter) % 2) {
+        api.updateGame()
         $('#prompt').text('Winner is X! Sign In To Play Again!')
         boardCleared()
       } else {
+        api.updateGame()
         $('#prompt').text('Winner is O! Sign In To Play Again!')
         boardCleared()
       }
@@ -750,13 +796,14 @@ const box6ClickSuccess = function () {
      $('#box6').text(store.boardValue)
      store.counter++
     } else {
-      store.counter--
+      $('#box6').off('click', event.onBox6)
     }
     console.log(isXOrO(boardArray, 'X'))
     console.log(winTest(isXOrO(boardArray, 'X')))
     console.log(winTest(isXOrO(boardArray, 'O')))
     // wrap this in a conditional to check is board is full
       if (winTest(isXOrO(boardArray, 'X'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -764,6 +811,7 @@ const box6ClickSuccess = function () {
         $('#prompt').text('Winner is X! Sign In To Play Again!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -773,14 +821,17 @@ const box6ClickSuccess = function () {
     } else {
     console.log("board is full")
     if (winTest(isXOrO(boardArray, 'X'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else if (winTest(isXOrO(boardArray, 'O'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else {
+      api.updateGame()
       store.play = true
       store.counter = 0
       $('#prompt').text('Tie')
@@ -801,9 +852,11 @@ const box7ClickSuccess = function () {
       $('.container').hide()
       $('#create-game').show()
       if ((store.counter) % 2) {
+        api.updateGame()
         $('#prompt').text('Winner is X! Sign In To Play Again!')
         boardCleared()
       } else {
+        api.updateGame()
         $('#prompt').text('Winner is O! Sign In To Play Again!')
         boardCleared()
       }
@@ -814,13 +867,14 @@ const box7ClickSuccess = function () {
       $('#box7').text(store.boardValue)
       store.counter++
     } else {
-      store.counter--
+      $('#box7').off('click', event.onBox7)
     }
     console.log(isXOrO(boardArray, 'X'))
     console.log(winTest(isXOrO(boardArray, 'X')))
     console.log(winTest(isXOrO(boardArray, 'O')))
     // wrap this in a conditional to check is board is full
       if (winTest(isXOrO(boardArray, 'X'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -828,6 +882,7 @@ const box7ClickSuccess = function () {
         $('#prompt').text('Winner is X! Sign In To Play Again!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -837,14 +892,17 @@ const box7ClickSuccess = function () {
     } else {
     console.log("board is full")
     if (winTest(isXOrO(boardArray, 'X'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else if (winTest(isXOrO(boardArray, 'O'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else {
+      api.updateGame()
       store.play = true
       store.counter = 0
       $('#prompt').text('Tie')
@@ -865,9 +923,11 @@ const box8ClickSuccess = function () {
       $('.container').hide()
       $('#create-game').show()
       if ((store.counter) % 2) {
+        api.updateGame()
         $('#prompt').text('Winner is X! Sign In To Play Again!')
         boardCleared()
       } else {
+        api.updateGame()
         $('#prompt').text('Winner is O! Sign In To Play Again!')
         boardCleared()
       }
@@ -878,13 +938,14 @@ const box8ClickSuccess = function () {
       $('#box8').text(store.boardValue)
       store.counter++
     } else {
-      store.counter--
+      $('#box8').off('click', event.onBox8)
     }
     console.log(isXOrO(boardArray, 'X'))
     console.log(winTest(isXOrO(boardArray, 'X')))
     console.log(winTest(isXOrO(boardArray, 'O')))
     // wrap this in a conditional to check is board is full
       if (winTest(isXOrO(boardArray, 'X'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -892,6 +953,7 @@ const box8ClickSuccess = function () {
         $('#prompt').text('Winner is X! Sign In To Play Again!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -901,14 +963,17 @@ const box8ClickSuccess = function () {
     } else {
     console.log("board is full")
     if (winTest(isXOrO(boardArray, 'X'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else if (winTest(isXOrO(boardArray, 'O'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else {
+      api.updateGame()
       store.play = true
       store.counter = 0
       $('#prompt').text('Tie')
@@ -929,9 +994,11 @@ const box9ClickSuccess = function () {
       $('.container').hide()
       $('#create-game').show()
       if ((store.counter) % 2) {
+        api.updateGame()
         $('#prompt').text('Winner is X! Sign In To Play Again!')
         boardCleared()
       } else {
+        api.updateGame()
         $('#prompt').text('Winner is O! Sign In To Play Again!')
         boardCleared()
       }
@@ -942,13 +1009,15 @@ const box9ClickSuccess = function () {
       $('#box9').text(store.boardValue)
       store.counter++
     } else {
-      store.counter--
+    //  $('#box9').off('click', event.onBox9)
+      $('#box9').off('click', event.onBox9)
     }
     console.log(isXOrO(boardArray, 'X'))
     console.log(winTest(isXOrO(boardArray, 'X')))
     console.log(winTest(isXOrO(boardArray, 'O')))
     // wrap this in a conditional to check is board is full
       if (winTest(isXOrO(boardArray, 'X'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -956,6 +1025,7 @@ const box9ClickSuccess = function () {
         $('#prompt').text('Winner is X! Sign In To Play Again!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
+        api.updateGame()
         store.play = true
         store.winCondition = true
         store.counter = 0
@@ -965,10 +1035,12 @@ const box9ClickSuccess = function () {
     } else {
     console.log("board is full")
     if (winTest(isXOrO(boardArray, 'X'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
     } else if (winTest(isXOrO(boardArray, 'O'))) {
+      api.updateGame()
       store.play = true
       store.winCondition = true
       store.counter = 0
@@ -982,6 +1054,7 @@ const box9ClickSuccess = function () {
   }
 }
 const boardCleared = function () {
+  api.updateGame()
   api.signOut()
   $('.container').hide()
   $('#sign-in').show()
@@ -1000,10 +1073,46 @@ const boardCleared = function () {
   $('#box9').text('')
   boardArray = ['', '', '', '', '', '', '', '', '']
   store.play = false
+  store.winCondition = true
+  console.log(store.winCondition)
   $('.sign-in-field').hide()
   $('.sign-in-button').show()
   $('.sign-in-button').val('Play Again?')
   // $('#prompt').text('Sign In To Play Again')
+}
+const isGameInPlay = function (data) {
+  let localGame = false
+  for (let i = 0; i < data.games.length; i++) {
+    if (data.games[i].id === store.currentGameId) {
+      if (data.games[i].over === true) {
+      console.log(data.games[i])
+      localGame = data.games[i].over
+    } }}
+  console.log(localGame)
+}
+
+const gameIsOver = function (data) {
+  api.signOut()
+  $('.container').hide()
+  $('#sign-in').show()
+  $('#games-over').hide()
+  $('#create-game').hide()
+  $('#sign-out').hide()
+  $('#change-pass').hide()
+  $('#box1').text('')
+  $('#box2').text('')
+  $('#box3').text('')
+  $('#box4').text('')
+  $('#box5').text('')
+  $('#box6').text('')
+  $('#box7').text('')
+  $('#box8').text('')
+  $('#box9').text('')
+  boardArray = ['', '', '', '', '', '', '', '', '']
+  $('.sign-in-field').hide()
+  $('.sign-in-button').show()
+  $('.sign-in-button').val('Game finished, play again?')
+  console.log('somethings fucky')
 }
 
 module.exports = {
@@ -1016,11 +1125,14 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   gamesPlayedSuccess,
+  gamePlayedSuccess,
   gamesPlayedFailure,
   createGameSuccess,
   createGameFailure,
   joinGameSuccess,
   joinGameFailure,
+  isGameInPlay,
+  gameIsOver,
   box1ClickSuccess,
   box2ClickSuccess,
   box3ClickSuccess,

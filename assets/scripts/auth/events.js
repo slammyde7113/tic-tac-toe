@@ -55,6 +55,14 @@ const onGamesPlayed = function (event) {
     .then(ui.gamesPlayedSuccess)
     .catch(ui.gamesPlayedFailure)
 }
+const onCurrentGameOver = function (event) {
+  event.preventDefault()
+  console.log('checking1111...')
+
+  api.currentGameOver()
+    .then(ui.gamePlayedSuccess)
+    .catch(ui.gamesPlayedFailure)
+}
 const onCreateGame = function (event) {
   // prefer event.target over this
   event.preventDefault()
@@ -72,11 +80,13 @@ const onJoinGame = function (event) {
   const str = JSON.stringify(data)
   console.log(str)
   console.log(str.replace(/\D/g, ''))
-  // initiates an HTTP request that was defined in the api module as singUp
+  // api.gamesPlayed()
+  // .then(ui.isGameInPlay())
   api.joinGame(data) // passing the credentials to the ajax call
-    .then(ui.joinGameSuccess) // using the Promise tot ensure order execution
-    // .then() afterwards takes the results of the previous .then()
+    .then(ui.joinGameSuccess)
     .catch(ui.joinGameFailure)
+    // using the Promise tot ensure order execution
+    // .then() afterwards takes the results of the previous .then()
 }
 const onBox1 = function (event) {
   // prefer event.target over this
@@ -173,6 +183,7 @@ const addHandlers = () => {
   $('#games-over').on('submit', onGamesPlayed)
   $('#create-game').on('submit', onCreateGame)
   $('#join-game').on('submit', onJoinGame)
+  $('#join-game').on('submit', onCurrentGameOver)
   $('#box1').on('click', onBox1)
   $('#box2').on('click', onBox2)
   $('#box3').on('click', onBox3)
