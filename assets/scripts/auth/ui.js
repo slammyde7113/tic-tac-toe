@@ -403,6 +403,8 @@ const gameOverrideFailsafe = (data) => {
 const gamesPlayedFailure = (error) => {
   console.log(error)
   $('#prompt').text('No Game History')
+  $('.container').hide()
+  $('#join-game').show()
 }
 const createGameSuccess = (data) => {
   $('#game-id').text('Game ID: ' + data.game.id)
