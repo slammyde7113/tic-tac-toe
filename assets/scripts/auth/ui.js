@@ -165,158 +165,6 @@ const isBoardFull = function (array) {
   }
 }
 let boardArray = ['', '', '', '', '', '', '', '', '']
-const testWin1 = function (array) {
-  if (array[1] === array[2] === array[3]) {
-    if (store.counter % 2) {
-      console.log('winner is O')
-      store.play = false
-    } else {
-      console.log('winner is X')
-      store.play = false
-    }
-  } else {
-    console.log(store.counter)
-    console.log('not over yet')
-    // console.log(isBoardFull(boardArray))
-  }
-  console.log(store.play)
-}
-const testWin2 = function (array) {
-  if (array[1] === array[2] === array[3]) {
-    if (store.counter % 2) {
-      console.log('winner is O')
-      store.play = false
-      // console.log(boardArray)
-    } else {
-      console.log('winner is X')
-      store.play = false
-      // console.log(boardArray)
-    }
-  } else {
-    console.log('not over yet')
-    // console.log(boardArray)
-  }
-  console.log(store.play)
-}
-const testWin3 = function (array) {
-  if (array[4] === array[5] === array[6]) {
-    if (store.counter % 2) {
-      console.log('winner is O')
-      store.play = false
-      // console.log(boardArray)
-    } else {
-      console.log('winner is X')
-      store.play = false
-      // console.log(boardArray)
-    }
-  } else {
-    console.log('not over yet')
-    // console.log(boardArray)
-  }
-  console.log(store.play)
-}
-const testWin4 = function (array) {
-  if (array[7] === array[8] === array[9]) {
-    if (store.counter % 2) {
-      console.log('winner is O')
-      store.play = false
-      // console.log(boardArray)
-    } else {
-      console.log('winner is X')
-      store.play = false
-      // console.log(boardArray)
-    }
-  } else {
-    console.log('not over yet')
-    // console.log(boardArray)
-  }
-  console.log(store.play)
-}
-const testWin5 = function (array) {
-  if (boardArray[1] === boardArray[4] === boardArray[7]) {
-    if (store.counter % 2) {
-      console.log('winner is O')
-      store.play = false
-      // console.log(boardArray)
-    } else {
-      console.log('winner is X')
-      store.play = false
-      // console.log(boardArray)
-    }
-  } else {
-    console.log('not over yet')
-    // console.log(boardArray)
-  }
-  console.log(store.play)
-}
-const testWin6 = function (array) {
-  if (boardArray[2] === boardArray[5] === boardArray[8]) {
-    if (store.counter % 2) {
-      console.log('winner is O')
-      store.play = false
-      // console.log(boardArray)
-    } else {
-      console.log('winner is X')
-      store.play = false
-      // console.log(boardArray)
-    }
-  } else {
-    console.log('not over yet')
-    // console.log(boardArray)
-  }
-  console.log(store.play)
-}
-const testWin7 = function (array) {
-  if (boardArray[3] === boardArray[6] === boardArray[9]) {
-    if (store.counter % 2) {
-      console.log('winner is O')
-      store.play = false
-      // console.log(boardArray)
-    } else {
-      console.log('winner is X')
-      store.play = false
-      // console.log(boardArray)
-    }
-  } else {
-    console.log('not over yet')
-    // console.log(boardArray)
-  }
-  console.log(store.play)
-}
-const testWin8 = function (array) {
-  if (boardArray[7] === boardArray[5] === boardArray[3]) {
-    if (store.counter % 2) {
-      console.log('winner is O')
-      store.play = false
-      // console.log(boardArray)
-    } else {
-      console.log('winner is X')
-      store.play = false
-      // console.log(boardArray)
-    }
-  } else {
-    console.log('not over yet')
-    // console.log(boardArray)
-  }
-  console.log(store.play)
-}
-const testWin9 = function (array) {
-  if (boardArray[1] === boardArray[5] === boardArray[9]) {
-    if (store.counter % 2) {
-      console.log('winner is O')
-      store.play = false
-      // console.log(boardArray)
-    } else {
-      console.log('winner is X')
-      store.play = false
-      // console.log(boardArray)
-    }
-  } else {
-    console.log('not over yet')
-    // console.log(boardArray)
-  }
-  console.log(store.play)
-}
 
 const signUpSuccess = (data) => {
   console.log(data)
@@ -325,7 +173,7 @@ const signUpSuccess = (data) => {
 
 const signUpFailure = (error) => {
   console.log(error)
-  $('#prompt').text('Sign up Failed')
+  $('#prompt').text('Sign up Failed. Please Try Another Username Or Make Sure Your Username And Password Match')
 }
 const signInSuccess = (data) => {
   console.log(data)
@@ -334,12 +182,12 @@ const signInSuccess = (data) => {
   $('#games-over').show()
   $('#sign-in').hide()
   $('#sign-out').show()
-  $('#prompt').text('Sign In Successful')
+  $('#prompt').text('You Are Signed In! Ready To Play!')
 }
 
 const signInFailure = (error) => {
   console.log(error)
-  $('#prompt').text('Sign In Failed')
+  $('#prompt').text('Sign In Failed. Please Make Sure You Have Double Checked Your Credentials And That You Have Correctly Signed Up')
 }
 const changePasswordSuccess = (data) => {
   console.log(data)
@@ -371,12 +219,16 @@ const signOutFailure = (error) => {
 const gamesPlayedSuccess = (data) => {
   console.log(data.games)
 
-  let string = ''
+  const gameArray = []
   for (let i = 0; i < data.games.length; i++) {
     console.log(data.games)
-    string += 'Game ID: ' + data.games[i].id + ' is over? ' + data.games[i].over +'______'
+    gameArray.push(`Game ID: ${data.games[i].id} is over? ${data.games[i].over}`)
   }
-  $('#prompt').text(string)
+  $('#prompt').empty()
+  for (let i = 0; i < gameArray.length; i++) {
+    $('#prompt').append('<br>' + gameArray[i] + '</br>')
+  }
+  // $('#prompt').html(gameArray)
 }
 const gamePlayedSuccess = (data) => {
   let currGame
@@ -412,6 +264,7 @@ const createGameSuccess = (data) => {
   console.log(data.game.id)
   $('#prompt').text('Please Enter Game ID ' + data.game.id + ' Below To Play')
   $('#clear-board').text('X goes first')
+  $('#join-field').attr('value', data.game.id)
 }
 
 const createGameFailure = (error) => {
@@ -443,11 +296,11 @@ const box1ClickSuccess = function () {
     $('#create-game').show()
     if (store.counter % 2 === 0) {
       console.log(store.counter)
-      $('#prompt').text('Winner is X! Sign In To Play Again!')
+      $('#prompt').text('Winner is X!')
       boardCleared()
     }
     if (store.counter % 2 === 1) {
-      $('#prompt').text('Winner is O! Sign In To Play Again!')
+      $('#prompt').text('Winner is O!')
       boardCleared()
     }
   }
@@ -469,7 +322,7 @@ const box1ClickSuccess = function () {
       store.winCondition = true
       store.counter = 0
       boardCleared()
-      $('#prompt').text('Winner is X! Sign In To Play Again!')
+      $('#prompt').text('Winner is X!')
     }
     if (winTest(isXOrO(boardArray, 'O'))) {
       api.updateGame()
@@ -477,7 +330,7 @@ const box1ClickSuccess = function () {
       store.winCondition = true
       store.counter = 0
       boardCleared()
-      $('#prompt').text('Winner is O! Sign In To Play Again!')
+      $('#prompt').text('Winner is O!')
     }
   } else {
   console.log("board is full")
@@ -512,10 +365,10 @@ const box2ClickSuccess = function () {
       $('.container').hide()
       $('#create-game').show()
       if ((store.counter) % 2) {
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
         boardCleared()
       } else {
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
         boardCleared()
       }
     }
@@ -537,7 +390,7 @@ const box2ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
         api.updateGame()
@@ -545,7 +398,7 @@ const box2ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
       }
     } else {
     console.log("board is full")
@@ -580,10 +433,10 @@ const box3ClickSuccess = function () {
       $('.container').hide()
       $('#create-game').show()
       if ((store.counter) % 2) {
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
         boardCleared()
       } else {
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
         boardCleared()
       }
     }
@@ -605,7 +458,7 @@ const box3ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
         api.updateGame()
@@ -613,7 +466,7 @@ const box3ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
       }
     } else {
     console.log("board is full")
@@ -648,10 +501,10 @@ const box4ClickSuccess = function () {
       $('.container').hide()
       $('#create-game').show()
       if ((store.counter) % 2) {
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
         boardCleared()
       } else {
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
         boardCleared()
       }
     }
@@ -673,7 +526,7 @@ const box4ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
         api.updateGame()
@@ -681,7 +534,7 @@ const box4ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
       }
     } else {
     console.log("board is full")
@@ -717,10 +570,10 @@ const box5ClickSuccess = function () {
       $('.container').hide()
       $('#create-game').show()
       if ((store.counter) % 2) {
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
         boardCleared()
       } else {
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
         boardCleared()
       }
     }
@@ -742,7 +595,7 @@ const box5ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
         api.updateGame()
@@ -750,7 +603,7 @@ const box5ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
       }
     } else {
     console.log("board is full")
@@ -787,11 +640,11 @@ const box6ClickSuccess = function () {
       $('#create-game').show()
       if ((store.counter) % 2) {
         api.updateGame()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
         boardCleared()
       } else {
         api.updateGame()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
         boardCleared()
       }
     }
@@ -813,7 +666,7 @@ const box6ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
         api.updateGame()
@@ -821,7 +674,7 @@ const box6ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
       }
     } else {
     console.log("board is full")
@@ -858,11 +711,11 @@ const box7ClickSuccess = function () {
       $('#create-game').show()
       if ((store.counter) % 2) {
         api.updateGame()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
         boardCleared()
       } else {
         api.updateGame()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
         boardCleared()
       }
     }
@@ -884,7 +737,7 @@ const box7ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
         api.updateGame()
@@ -892,7 +745,7 @@ const box7ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
       }
     } else {
     console.log("board is full")
@@ -929,11 +782,11 @@ const box8ClickSuccess = function () {
       $('#create-game').show()
       if ((store.counter) % 2) {
         api.updateGame()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
         boardCleared()
       } else {
         api.updateGame()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
         boardCleared()
       }
     }
@@ -955,7 +808,7 @@ const box8ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
         api.updateGame()
@@ -963,7 +816,7 @@ const box8ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
       }
     } else {
     console.log("board is full")
@@ -1000,11 +853,11 @@ const box9ClickSuccess = function () {
       $('#create-game').show()
       if ((store.counter) % 2) {
         api.updateGame()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
         boardCleared()
       } else {
         api.updateGame()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
         boardCleared()
       }
     }
@@ -1027,7 +880,7 @@ const box9ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is X! Sign In To Play Again!')
+        $('#prompt').text('Winner is X!')
       }
       if (winTest(isXOrO(boardArray, 'O'))) {
         api.updateGame()
@@ -1035,7 +888,7 @@ const box9ClickSuccess = function () {
         store.winCondition = true
         store.counter = 0
         boardCleared()
-        $('#prompt').text('Winner is O! Sign In To Play Again!')
+        $('#prompt').text('Winner is O!')
       }
     } else {
     console.log("board is full")
@@ -1065,7 +918,7 @@ const boardCleared = function () {
   $('#sign-in').show()
   $('#games-over').hide()
   $('#create-game').hide()
-  $('#sign-out').hide()
+
   $('#change-pass').hide()
   $('#box1').text('')
   $('#box2').text('')
@@ -1082,7 +935,8 @@ const boardCleared = function () {
   console.log(store.winCondition)
   $('.sign-in-field').hide()
   $('.sign-in-button').show()
-  $('.sign-in-button').val('Play Again?')
+  $('#sign-out').hide()
+  $('.sign-in-button').val('Return To Main Menu')
   // $('#prompt').text('Sign In To Play Again')
 }
 const isGameInPlay = function (data) {
@@ -1116,8 +970,7 @@ const gameIsOver = function (data) {
   boardArray = ['', '', '', '', '', '', '', '', '']
   $('.sign-in-field').hide()
   $('.sign-in-button').show()
-  $('.sign-in-button').val('Game finished, play again?')
-  console.log('somethings fucky')
+  $('.sign-in-button').val('Game finished, click to return to Main Menu')
 }
 
 module.exports = {
