@@ -1,6 +1,6 @@
 # Tic Tac Toe
-## By Sam Dyer
-## In Association With General Assembly
+### By Sam Dyer
+#### In Association With General Assembly
 
 Link to hosted application:
 [Tic-Tac-Toe Game By Sam Dyer](slammyde7113.github.io/tic-tac-toe/?)
