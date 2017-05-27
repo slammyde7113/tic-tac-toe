@@ -26,18 +26,26 @@ h1 {
   text-align: center;
   font-size: 118px;
 }
+.col-xs-4:hover {
+  background: white;
+}
 
 #games-over-container {
   display: block;
   width: 250px;
 }
+
 #join-game {
   display: none;
 }
+
+
+
 #create-game {
   display: none;
   width: 250px;
 }
+
 #change-pass {
   display: none;
 }
