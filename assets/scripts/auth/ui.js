@@ -287,9 +287,9 @@ const box1ClickSuccess = function () {
   console.log('counter: ' + store.counter)
   if ((store.counter > -1) && (store.counter < 9)) {
   if (store.counter % 2) {
-    $('#prompt').text("Player O's Turn")
+    $('#prompt').text("Player X's Turn!")
   } else {
-    $('#prompt').text("Player X's Turn")
+    $('#prompt').text("Player O's Turn!")
   }
   if (store.play) {
     $('.container').hide()
@@ -357,9 +357,9 @@ const box2ClickSuccess = function () {
   console.log('counter: ' + store.counter)
     if ((store.counter > -1) && (store.counter < 9)) {
     if (store.counter % 2) {
-      $('#prompt').text("Player O's Turn")
+      $('#prompt').text("Player X's Turn!")
     } else {
-      $('#prompt').text("Player X's Turn")
+      $('#prompt').text("Player O's Turn!")
     }
     if (store.play) {
       $('.container').hide()
@@ -425,9 +425,9 @@ const box3ClickSuccess = function () {
   console.log('counter: ' + store.counter)
     if ((store.counter > -1) && (store.counter < 9)) {
     if (store.counter % 2) {
-      $('#prompt').text("Player O's Turn")
+      $('#prompt').text("Player X's Turn!")
     } else {
-      $('#prompt').text("Player X's Turn")
+      $('#prompt').text("Player O's Turn!")
     }
     if (store.play) {
       $('.container').hide()
@@ -493,9 +493,9 @@ const box4ClickSuccess = function () {
   console.log('counter: ' + store.counter)
     if ((store.counter > -1) && (store.counter < 9)) {
     if (store.counter % 2) {
-      $('#prompt').text("Player O's Turn")
+      $('#prompt').text("Player X's Turn!")
     } else {
-      $('#prompt').text("Player X's Turn")
+      $('#prompt').text("Player O's Turn!")
     }
     if (store.play) {
       $('.container').hide()
@@ -562,9 +562,9 @@ const box5ClickSuccess = function () {
   console.log('counter: ' + store.counter)
     if ((store.counter > -1) && (store.counter < 9)) {
     if (store.counter % 2) {
-      $('#prompt').text("Player O's Turn")
+      $('#prompt').text("Player X's Turn!")
     } else {
-      $('#prompt').text("Player X's Turn")
+      $('#prompt').text("Player O's Turn!")
     }
     if (store.play) {
       $('.container').hide()
@@ -631,9 +631,9 @@ const box6ClickSuccess = function () {
   console.log('counter: ' + store.counter)
     if ((store.counter > -1) && (store.counter < 9)) {
     if (store.counter % 2) {
-      $('#prompt').text("Player O's Turn")
+      $('#prompt').text("Player X's Turn!")
     } else {
-      $('#prompt').text("Player X's Turn")
+      $('#prompt').text("Player O's Turn!")
     }
     if (store.play) {
       $('.container').hide()
@@ -702,9 +702,9 @@ const box7ClickSuccess = function () {
   console.log('counter: ' + store.counter)
     if ((store.counter > -1) && (store.counter < 9)) {
     if (store.counter % 2) {
-      $('#prompt').text("Player O's Turn")
+      $('#prompt').text("Player X's Turn!")
     } else {
-      $('#prompt').text("Player X's Turn")
+      $('#prompt').text("Player O's Turn!")
     }
     if (store.play) {
       $('.container').hide()
@@ -773,9 +773,9 @@ const box8ClickSuccess = function () {
   console.log('counter: ' + store.counter)
     if ((store.counter > -1) && (store.counter < 9)) {
     if (store.counter % 2) {
-      $('#prompt').text("Player O's Turn")
+      $('#prompt').text("Player X's Turn!")
     } else {
-      $('#prompt').text("Player X's Turn")
+      $('#prompt').text("Player O's Turn!")
     }
     if (store.play) {
       $('.container').hide()
@@ -844,9 +844,9 @@ const box9ClickSuccess = function () {
   console.log('counter: ' + store.counter)
     if ((store.counter > -1) && (store.counter < 9)) {
     if (store.counter % 2) {
-      $('#prompt').text("Player O's Turn")
+      $('#prompt').text("Player X's Turn!")
     } else {
-      $('#prompt').text("Player X's Turn")
+      $('#prompt').text("Player O's Turn!")
     }
     if (store.play) {
       $('.container').hide()
