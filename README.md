@@ -3,7 +3,7 @@ By Sam Dyer
 In Association With General Assembly
 
 Link to hosted application:
-(slammyde7113.github.io/tic-tac-toe/?)
+[Tic-Tac-Toe Game By Sam Dyer](slammyde7113.github.io/tic-tac-toe/?)
 
 Technologies used:
 
