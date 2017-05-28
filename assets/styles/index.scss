@@ -7,10 +7,10 @@ h1 {
   text-align: center;
 }
 #prompt {
-  font-size: 36px;
+  font-size: 6vw;
   background-color: blue;
   color: white;
-  height: 200px;
+  height: 20vw;
   overflow: scroll;
   white-space: pre-line;
 }
@@ -21,10 +21,10 @@ h1 {
 }
 
 .col-xs-4 {
-  border: black 20px solid;
-  height: 200px;
+  border: black 2vw solid;
+  height: 20vw;
   text-align: center;
-  font-size: 118px;
+  font-size: 10vw;
 }
 .col-xs-4:hover {
   background: white;
@@ -32,7 +32,7 @@ h1 {
 
 #games-over-container {
   display: block;
-  width: 250px;
+  width: 25vw;
 }
 
 #join-game {
