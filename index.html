@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic Tac Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags unless you know what you are doing -->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags unless you know what you are doing -->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body class="container-fluid">
+<h1>User Notifications:</h1>
+<div id="prompt">Welcome! Please Sign In!</div>
+<form id="sign-up">
+        <fieldset>
+          <legend>Sign up!</legend>
+          <label>Email
+            <input type="text" name="[credentials][email]" value="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Please Enter A Valid Email">
+          </label>
+
+          <label>Password
+            <input type="password" name="[credentials][password]" value="">
+          </label>
+
+          <label>Password Confirmation
+            <input type="password" name="[credentials][password_confirmation]" value="">
+          </label>
+          <input type="submit" name="submit" value="Sign up!">
+        </fieldset>
+      </form>
+      <form id="sign-in">
+        <fieldset>
+          <legend class="sign-in-field">Sign in!</legend>
+          <label class="sign-in-field">Email
+            <input class="sign-in-field" type="text" name="[credentials][email]" value="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Please Enter A Valid Email">
+          </label>
+          <label class="sign-in-field">Password
+            <input class="sign-in-field" type="password" name="[credentials][password]" value="">
+          </label>
+          <input class="sign-in-button" type="submit" name="submit" value="Sign in!">
+        </fieldset>
+      </form>
+      <form id="change-pass">
+        <fieldset>
+          <legend id="changed-pass-indicator">Change Password</legend>
+          <label>Old Password
+            <input type="password" name="[passwords][old]" value="">
+          </label>
+          <label>New Password
+            <input type="password" name="[passwords][new]" value="">
+          </label>
+          <input type="submit" name="submit" value="Change Password">
+        </fieldset>
+      </form>
+      <form id="sign-out" class="sign-in-button">
+        <fieldset>
+          <legend class="sign-in-field">Sign Out!</legend>
+          <input type="submit" name="submit" value="Sign out!">
+        </fieldset>
+      </form>
+
+      <h1>Tic Tac Toe</h1>
+      <div id="draw"> IF THERE IS A DRAW, CLICK ON ANY SQUARE TO CONTINUE </div>
+
+      <div id="games-over-container">
+      <form id="games-over">
+        <fieldset>
+          <legend>Games Being Played!</legend>
+          <input type="submit" name="submit" value="Check">
+        </fieldset>
+      </form>
+      <form id="create-game">
+        <fieldset>
+          <legend>Create Game!</legend>
+          <input type="submit" name="submit" value="Create">
+        </fieldset>
+      </form>
+      <form id="join-game">
+        <fieldset>
+          <legend>Join Game!</legend>
+          <label>Game ID
+            <input id="join-field" type="text" name="[game][id]" value="Enter Game ID">
+          </label>
+          <input type="submit" name="submit" value="Join">
+          <div id="game-prompt"></div>
+        </fieldset>
+      </form>
+    </div>
+
+      <div class="container">
+        <form id="clear-board">
+        <div class="row" id="top-row">
+          <label> X goes first</label>
+        </div>
+      </form>
+        <div class="row">
+          <div class="col-xs-4 box" id="box1"></div>
+          <div class="col-xs-4 box" id="box2"></div>
+          <div class="col-xs-4 box" id="box3"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-4 box" id="box4"></div>
+          <div class="col-xs-4 box" id="box5"></div>
+          <div class="col-xs-4 box" id="box6"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-4 box" id="box7"></div>
+          <div class="col-xs-4 box" id="box8"></div>
+          <div class="col-xs-4 box" id="box9"></div>
+        </div>
+    </div>
+
+    </body>
+
+</html>
